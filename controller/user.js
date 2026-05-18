@@ -1,7 +1,7 @@
 const {v4 : uuidv4 } = require('uuid')
 const User = require('../models/user')
 const {getUser, setUser} = require('../service/auth')
-async function handleUserSignup(req, res){
+async function  handleUserSignup(req, res){
     const {name, email, password} = req.body;   
     
     await User.create({
@@ -22,8 +22,9 @@ async function handleUserLogedin(req,res){
 
 
     const token = setUser(user);
-    res.cookie("uid", token);
-    return res.redirect("/")
+    // res.cookie("uid", token);
+    return res.json({token})
+    // return res.redirect("/")
 }
 
 module.exports = { 
